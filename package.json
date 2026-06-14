@@ -1,5 +1,5 @@
 {
-  "name": "copy-my-context-2ai",
+  "name": "copy-my-ctx-2ai",
   "displayName": "Copy My Context 2AI",
   "description": "Copy or send selected code to AI tools (iTerm2) with file context.",
   "version": "0.2.0",
@@ -16,6 +16,7 @@
     "Other",
     "Chat"
   ],
+  "icon": "images/icon.png",
   "keywords": [
     "ai",
     "context",
