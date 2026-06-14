@@ -2,7 +2,7 @@
   "name": "copy-my-ctx-2ai",
   "displayName": "Copy My Context 2AI",
   "description": "Copy or send selected code to AI tools (iTerm2) with file context.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "AlphaLeonX",
   "license": "MIT",
   "repository": {
