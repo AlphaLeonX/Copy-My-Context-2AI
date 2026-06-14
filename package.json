@@ -1,0 +1,126 @@
+{
+  "name": "copy-my-context-2ai",
+  "displayName": "Copy My Context 2AI",
+  "description": "Copy or send selected code to AI tools (iTerm2) with file context.",
+  "version": "0.2.0",
+  "publisher": "AlphaLeonX",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlphaLeonX/Copy-My-Context-2AI.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Chat"
+  ],
+  "keywords": [
+    "ai",
+    "context",
+    "copy",
+    "iterm2",
+    "llm",
+    "claude",
+    "chatgpt",
+    "copilot",
+    "code-context",
+    "vscode"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "submenus": [
+      {
+        "id": "copyClaudeContext.submenu",
+        "label": "Copy2AI"
+      }
+    ],
+    "commands": [
+      {
+        "command": "copyClaudeContext.copyAsAI",
+        "title": "Copy as AI Context"
+      },
+      {
+        "command": "copyClaudeContext.sendToiTerm2",
+        "title": "Send Selection to AI in iTerm2"
+      },
+      {
+        "command": "copyClaudeContext.copyAndSendToiTerm2",
+        "title": "Copy and Send to AI in iTerm2"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "submenu": "copyClaudeContext.submenu",
+          "when": "editorHasSelection",
+          "group": "9_cutcopypaste"
+        }
+      ],
+      "copyClaudeContext.submenu": [
+        {
+          "command": "copyClaudeContext.copyAsAI",
+          "group": "1_copy"
+        },
+        {
+          "command": "copyClaudeContext.sendToiTerm2",
+          "group": "2_send"
+        },
+        {
+          "command": "copyClaudeContext.copyAndSendToiTerm2",
+          "group": "3_copysend"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Copy My Context 2AI",
+      "properties": {
+        "copyClaudeContext.template": {
+          "type": "string",
+          "default": "{{relativePath}}:{{startLine}}-{{endLine}}\n```{{language}}\n{{selectedCode}}\n```",
+          "description": "Template for the AI context output. Variables: {{relativePath}}, {{fileName}}, {{startLine}}, {{endLine}}, {{language}}, {{selectedCode}}"
+        },
+        "copyClaudeContext.iterm2SubmitMode": {
+          "type": "string",
+          "default": "pasteOnly",
+          "enum": [
+            "pasteOnly",
+            "pasteAndEnter"
+          ],
+          "enumDescriptions": [
+            "Paste the selection into iTerm2 without executing.",
+            "Paste the selection and press Enter to execute."
+          ],
+          "description": "How to submit text to iTerm2."
+        },
+        "copyClaudeContext.iterm2TargetMode": {
+          "type": "string",
+          "default": "chooseSession",
+          "enum": [
+            "currentSession",
+            "chooseSession"
+          ],
+          "enumDescriptions": [
+            "Always send to the frontmost iTerm2 session.",
+            "Prompt to choose which iTerm2 tab to send to each time. Lists all tabs across all windows. Skips prompt when only one tab exists."
+          ],
+          "description": "Which iTerm2 session to target."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.9.2",
+    "typescript": "^5.3.0"
+  }
+}
